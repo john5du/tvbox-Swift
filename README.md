@@ -99,6 +99,23 @@ xcodegen generate
 
 ---
 
+### iOS 版本打包
+
+1. 确保已安装通用依赖：
+   - Xcode 15+
+   - [XcodeGen](https://github.com/yonaskolb/XcodeGen) (可选，用于生成工程)
+
+2. 运行打包脚本：
+   ```bash
+   chmod +x package_ios.sh
+   ./package_ios.sh
+   ```
+
+3. **注意**：
+   - 脚本默认生成 `.xcarchive` 文件。
+   - 如需自动生成 `.ipa`，请在 `ExportOptions.plist` 中填写您的 `teamID`。
+   - 您也可以在 Xcode 中打开 `tvbox.xcodeproj`，选择 `tvbox` scheme，然后点击 `Product > Archive` 手动打包。
+
 ## 📦 macOS 独立打包
 
 项目已内置自动化打包脚本 `package_mac.sh`。当您需要分发 macOS 版本时，直接运行即可自动清理缓存、构建并生成免安装的 `.dmg` 拖拽式安装包。
