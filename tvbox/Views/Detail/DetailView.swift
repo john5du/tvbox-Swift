@@ -19,7 +19,7 @@ struct DetailView: View {
         ScrollView {
             VStack(spacing: 0) {
                 // 播放器区域
-                if viewModel.isPlaying, let url = viewModel.playUrl, !showFullScreen {
+                if viewModel.isPlaying, let url = viewModel.playUrl {
                     PlayerView(
                         urlString: url,
                         startPosition: viewModel.currentPlaybackSeconds(),
@@ -38,6 +38,8 @@ struct DetailView: View {
                         .onTapGesture(count: 2) {
                             openFullScreenPlayer()
                         }
+                        .opacity(showFullScreen ? 0 : 1)
+                        .allowsHitTesting(!showFullScreen)
                 }
                 
                 // 视频信息

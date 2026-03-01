@@ -122,12 +122,12 @@ enum VLCBufferMode: Int, CaseIterable, Identifiable {
             if isLive {
                 return (network: 2600, live: 2600, file: 3200)
             }
-            return (network: 3800, live: 3200, file: 4400)
+            return (network: 6000, live: 5000, file: 6400)
         case .smooth:
             if isLive {
                 return (network: 4200, live: 4200, file: 5200)
             }
-            return (network: 5600, live: 4800, file: 6400)
+            return (network: 8000, live: 6800, file: 8400)
         }
     }
 }
