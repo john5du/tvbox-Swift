@@ -17,10 +17,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Select Xcode 15.4
+      - name: Select Xcode 16.x
         uses: maxim-lobanov/setup-xcode@v1
         with:
-          xcode-version: "15.4"
+          # tvbox.xcodeproj uses objectVersion 77 (Xcode 16 format)
+          xcode-version: "^16.0"
 
       - name: Install XcodeGen
         run: brew install xcodegen
