@@ -116,6 +116,25 @@ xcodegen generate
    - 如需自动生成 `.ipa`，请在 `ExportOptions.plist` 中填写您的 `teamID`。
    - 您也可以在 Xcode 中打开 `tvbox.xcodeproj`，选择 `tvbox` scheme，然后点击 `Product > Archive` 手动打包。
 
+4. 如需本地生成**未签名** IPA（用于后续重签名流程）：
+   ```bash
+   chmod +x package_ios.sh
+   ./package_ios.sh --unsigned
+   ```
+   输出文件为项目根目录下的 `TVBox-unsigned.ipa`。
+
+### GitHub Actions 自动构建未签名 IPA
+
+仓库内置了 workflow：`Build Unsigned iOS IPA`（文件路径：`.github/workflows/ios-unsigned-ipa.yml`）。
+
+触发方式：
+- 手动触发：GitHub Actions 页面选择 `Build Unsigned iOS IPA`，点击 `Run workflow`
+- 自动触发：推送符合 `v*` 的 tag（如 `v1.0.0`）
+
+构建产物：
+- 每次构建都会上传 Artifact：`TVBox-unsigned-ipa`（包含 `TVBox-unsigned.ipa`）
+- `v*` tag 构建会额外将 `TVBox-unsigned.ipa` 上传到对应 GitHub Release 附件
+
 ## 📦 macOS 独立打包
 
 项目已内置自动化打包脚本 `package_mac.sh`。当您需要分发 macOS 版本时，直接运行即可自动清理缓存、构建并生成免安装的 `.dmg` 拖拽式安装包。
